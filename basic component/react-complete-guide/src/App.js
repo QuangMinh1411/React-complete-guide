@@ -1,32 +1,37 @@
+import React,{useState} from 'react';
 import Expense from './components/Expenses/Expense';
 import NewExpense from './components/NewExpense/NewExpense';
 function App() {
-  const expenses = [
+  const INTIALEXPENSES = [
     {
       id: 'e1',
       title: 'Toilet Paper',
       amount: 94.12,
-      date: new Date(2020, 7, 14),
+      date: "2020-07-14",
     },
-    { id: 'e2', title: 'New TV', amount: 799.49, date: new Date(2021, 2, 12) },
+    { id: 'e2', title: 'New TV', amount: 799.49, date: "2021-02-12" },
     {
       id: 'e3',
       title: 'Car Insurance',
       amount: 294.67,
-      date: new Date(2021, 2, 28),
+      date: "2021-02-28",
     },
     {
       id: 'e4',
       title: 'New Desk (Wooden)',
       amount: 450,
-      date: new Date(2021, 5, 12),
+      date: "2021-05-12",
     }
   ];
 
+  const [expenses,setExpenses] = useState(INTIALEXPENSES)
   const addExpense = (expense)=>{
-    expenses.push(expense);
-    console.log(expenses)
+    setExpenses((preExpenses)=>{
+      return [expense,...preExpenses]
+    })
   }
+
+
   return (
     <div>
       <NewExpense addExpense={addExpense} />
